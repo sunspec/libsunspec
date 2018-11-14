@@ -21,5 +21,6 @@
  * IN THE SOFTWARE.
  */
 
-#define SUNS_SMDX_PATH          "/home/bobfox/libsunspec/test/models/smdx/"        /* must have path separator at the end */
-
+#ifndef SUNS_SMDX_PATH
+#define SUNS_SMDX_PATH          "/usr/share/models/"        /* must have path separator at the end */
+#endif

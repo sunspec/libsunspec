@@ -200,6 +200,7 @@ suns_model_read(suns_model_t *model)
         return SUNS_ERR_BUF_SIZE;
     }
 
+    memset(buf, 0, SUNS_MODEL_BUF_SIZE);
     err = suns_device_modbus_read(model->device, model->addr, model->len, buf, 0);
     if (err != SUNS_ERR_OK) {
         return err;

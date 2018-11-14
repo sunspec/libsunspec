@@ -90,7 +90,7 @@ suns_cea2045_read(void *prot, unsigned char *buf, uint16_t *len, uint32_t timeou
 suns_err_t
 suns_cea2045_write(void *prot, unsigned char *buf, uint16_t len, uint32_t timeout)
 {
-    uint16_t ret;
+    int16_t ret;
     suns_err_t err = SUNS_ERR_OK;
 
     if ((ret = CEA2045ss_write(buf, len, timeout)) != len) {
