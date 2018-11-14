@@ -38,37 +38,37 @@
 suns_model_def_t *suns_model_def_list = NULL;
 
 suns_data_t suns_data_types[] = {
-    {"int16", SUNS_TYPE_INT16, SUNS_TYPE_INT16, 1, 1, {.s16 = 0x8000},
+    {"int16", SUNS_TYPE_INT16, SUNS_TYPE_INT16, 1, 0, {.s16 = 0x8000},
               suns_value_int16_to_float, suns_value_float_to_int16, suns_value_int16_str, suns_value_int16_impl,
               suns_modbus_to_int16, suns_modbus_from_int16},
-    {"uint16", SUNS_TYPE_UINT16, SUNS_TYPE_UINT16, 1, 1, {.u16 = 0xFFFF},
+    {"uint16", SUNS_TYPE_UINT16, SUNS_TYPE_UINT16, 1, 0, {.u16 = 0xFFFF},
               suns_value_uint16_to_float, suns_value_float_to_uint16, suns_value_uint16_str, suns_value_uint16_impl,
               suns_modbus_to_uint16, suns_modbus_from_uint16},
     {"acc16", SUNS_TYPE_ACC16, SUNS_TYPE_UINT16, 1, 0, {.u16 = 0},
               suns_value_int16_to_float, suns_value_float_to_int16, suns_value_uint16_str, suns_value_impl,
               suns_modbus_to_uint16, suns_modbus_from_uint16},
-    {"int32", SUNS_TYPE_INT32, SUNS_TYPE_INT32, 2, 1, {.s32 = 0x80000000},
+    {"int32", SUNS_TYPE_INT32, SUNS_TYPE_INT32, 2, 0, {.s32 = 0x80000000},
               suns_value_int32_to_float, suns_value_float_to_int32, suns_value_int32_str, suns_value_int32_impl,
               suns_modbus_to_int32, suns_modbus_from_int32},
-    {"uint32", SUNS_TYPE_UINT32, SUNS_TYPE_UINT32, 2, 1, {.u32 = 0xFFFFFFFF},
+    {"uint32", SUNS_TYPE_UINT32, SUNS_TYPE_UINT32, 2, 0, {.u32 = 0xFFFFFFFF},
               suns_value_uint32_to_float, suns_value_float_to_uint32, suns_value_uint32_str, suns_value_uint32_impl,
               suns_modbus_to_uint32, suns_modbus_from_uint32},
     {"acc32", SUNS_TYPE_ACC32, SUNS_TYPE_UINT32, 2, 0, {.u32 = 0},
               suns_value_uint32_to_float, suns_value_float_to_uint32, suns_value_uint32_str, suns_value_impl,
               suns_modbus_to_uint32, suns_modbus_from_uint32},
-    {"int64", SUNS_TYPE_INT64, SUNS_TYPE_INT64, 4, 1, {.s64 = 0x8000000000000000LL},
+    {"int64", SUNS_TYPE_INT64, SUNS_TYPE_INT64, 4, 0, {.s64 = 0x8000000000000000LL},
               suns_value_int64_to_float, suns_value_float_to_int64, suns_value_int64_str, suns_value_int64_impl,
               suns_modbus_to_int64, suns_modbus_from_int64},
-    {"uint64", SUNS_TYPE_UINT64, SUNS_TYPE_UINT64, 4, 1, {.u64 = 0xFFFFFFFFFFFFFFFFLL},
+    {"uint64", SUNS_TYPE_UINT64, SUNS_TYPE_UINT64, 4, 0, {.u64 = 0xFFFFFFFFFFFFFFFFLL},
               suns_value_uint64_to_float, suns_value_float_to_uint64, suns_value_uint64_str, suns_value_uint64_impl,
               suns_modbus_to_uint64, suns_modbus_from_uint64},
     {"acc64", SUNS_TYPE_ACC64, SUNS_TYPE_UINT64, 4, 0, {.u64 = 0},
               suns_value_uint64_to_float, suns_value_float_to_uint64, suns_value_uint64_str, suns_value_impl,
               suns_modbus_to_uint64, suns_modbus_from_uint64},
-    {"float32", SUNS_TYPE_FLOAT32, SUNS_TYPE_FLOAT32, 2, 1, {.u32 = 0x7fc00000},
+    {"float32", SUNS_TYPE_FLOAT32, SUNS_TYPE_FLOAT32, 2, 0, {.u32 = 0x7fc00000},
               suns_value_float_to_float, NULL, suns_value_float32_str, suns_value_float32_impl,
               suns_modbus_to_float, suns_modbus_from_float},
-    {"string", SUNS_TYPE_STR, SUNS_TYPE_STR, 0, 1, {.u16 = 0},
+    {"string", SUNS_TYPE_STR, SUNS_TYPE_STR, 0, 0, {.u16 = 0},
               NULL, NULL, suns_value_str_str, suns_value_string_impl, suns_modbus_to_str, suns_modbus_from_str},
     {"sunssf", SUNS_TYPE_SUNSSF, SUNS_TYPE_INT16, 1, 0, {.s16 = 0x8000},
               suns_value_int16_to_float, suns_value_float_to_int16, suns_value_int16_str, suns_value_sunssf_impl,
@@ -85,10 +85,10 @@ suns_data_t suns_data_types[] = {
     {"bitfield32", SUNS_TYPE_BIT32, SUNS_TYPE_UINT32, 2, 0, {.u32 = 0xFFFFFFFF},
               suns_value_uint32_to_float, suns_value_float_to_uint32, suns_value_uint32_str, suns_value_bitfield32_impl,
               suns_modbus_to_uint32, suns_modbus_from_uint32},
-    {"pad", SUNS_TYPE_PAD, SUNS_TYPE_UINT16, 1, 0, {.u16 = 0xFFFF}, NULL, NULL, NULL, suns_value_impl, suns_modbus_to_uint16, suns_modbus_from_uint16},
-    {"ipaddr", SUNS_TYPE_IPADDR, SUNS_TYPE_UINT32, 2, 1, {.u32 = 0}, suns_value_uint32_to_float, suns_value_float_to_uint32, suns_value_uint32_str, suns_value_ipaddr_impl,
+    {"pad", SUNS_TYPE_PAD, SUNS_TYPE_INT16, 1, 1, {.s16 = 0x8000}, NULL, NULL, NULL, suns_value_impl, suns_modbus_to_int16, suns_modbus_from_int16},
+    {"ipaddr", SUNS_TYPE_IPADDR, SUNS_TYPE_UINT32, 2, 0, {.u32 = 0}, suns_value_uint32_to_float, suns_value_float_to_uint32, suns_value_uint32_str, suns_value_ipaddr_impl,
               suns_modbus_to_uint32, suns_modbus_from_uint32},
-    {"ipv6addr", SUNS_TYPE_IPV6ADDR, SUNS_TYPE_STR, 8, 1, {.u16 = 0}, NULL, NULL, suns_value_uint16_str, suns_value_ipv6addr_impl, suns_modbus_to_str, suns_modbus_from_str},
+    {"ipv6addr", SUNS_TYPE_IPV6ADDR, SUNS_TYPE_STR, 8, 0, {.u16 = 0}, NULL, NULL, suns_value_uint16_str, suns_value_ipv6addr_impl, suns_modbus_to_str, suns_modbus_from_str},
     {NULL},
 };
 
@@ -718,6 +718,10 @@ suns_point_add(suns_block_t *block, suns_point_def_t *point_def, uint16_t block_
     point->block = block;
     point->point_def = point_def;
     point->addr = block_addr + point_def->offset;
+    point->dirty = 1;
+    if(point->point_def->type->has_unimpl_value) {
+        point->value_base = point->point_def->type->unimpl_value;
+    }
 
     if (block->points == NULL) {
         block->points = point;
@@ -951,6 +955,7 @@ suns_model_add(suns_device_t *device, uint16_t id, uint16_t len, uint16_t addr, 
     model->device = device;
     model->id = id;
     model->len = len;
+    model->total_len = fixed_len + repeating_count * repeating_len;
     model->index = 1;
     model->addr = addr;
     model->block_count = repeating_count + 1;
@@ -1100,7 +1105,7 @@ suns_point_dump(suns_point_t *point, char *str)
         sf_id = point->sf_point->point_def->id;
         sf = point->sf_point->value_base.s16;
     }
-    printf("%s  %d  %s", point->point_def->id, point->addr, sf_id);
+    printf("\t\t%s  %d  %s", point->point_def->id, point->addr, sf_id);
     // printf("\nis_implemented = %d\n", point->point_def->type->is_implemented(point->value_base));
     // if (point->point_def->type->is_implemented(point->value_base) && point->point_def->type->to_str) {
     if (point->point_def->type->is_implemented(point->value_base) && point->point_def->type->to_str) {
@@ -1119,7 +1124,7 @@ suns_block_dump(suns_block_t *block, char *str)
     printf("%s", str);
 
     if (block) {
-        printf("block %d %d %d:\n", block->index, block->addr, block->block_def->len);
+        printf("\tblock %d %d %d:\n", block->index, block->addr, block->block_def->len);
     }
 
     point = block->points;

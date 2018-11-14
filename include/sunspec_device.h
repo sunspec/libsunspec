@@ -150,6 +150,7 @@ typedef struct _suns_model_t {
     struct _suns_device_t *device;
     uint16_t id;
     uint16_t len;
+    uint16_t total_len;
     uint16_t index;
     uint16_t addr;
     uint16_t block_count;
